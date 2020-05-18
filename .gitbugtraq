@@ -1,0 +1,4 @@
+[bugtraq "integrity"]
+loglinkregex = ALM_Task\\s\\d+
+logregex = \\d+
+url = url:integrity://skobde-mks-im.kobde.trw.com:7001/im/viewissue?selection=%BUGID%

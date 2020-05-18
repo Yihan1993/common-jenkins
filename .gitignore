@@ -1,0 +1,90 @@
+##############################################################################
+# ZF output configuration
+# For generated files we prefer to use distinct output directories.
+# This may have some benefits:
+# - easy to clean up
+# - easy to distinguish between generated and self-written files
+# - no extension based ignore rules needed, which may be difficult for .c files
+##############################################################################
+
+# Ignore all files that are written to the "output" directory and below
+output/
+
+##############################################################################
+# Matlab
+# based on
+# https://github.com/github/gitignore/blob/master/Global/Matlab.gitignore
+##############################################################################
+
+# Windows default autosave extension
+*.asv
+
+# OSX / *nix default autosave extension
+*.m~
+
+# Compiled MEX binaries (all platforms)
+*.mex*
+
+# Simulink Code Generation
+slprj/
+
+# Session info
+octave-workspace
+
+# Simulink autosave extension
+.autosave
+
+##############################################################################
+# Microsoft Windows
+# based on
+# https://github.com/github/gitignore/blob/master/Global/Windows.gitignore
+##############################################################################
+
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+# Dump file
+*.stackdump
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+##############################################################################
+# Microsoft Office
+# based on
+# https://github.com/github/gitignore/blob/master/Global/MicrosoftOffice.gitignore
+##############################################################################
+
+*.tmp
+
+# Word temporary
+~$*.doc*
+
+# Excel temporary
+~$*.xls*
+
+# Excel Backup File
+*.xlk
+
+# PowerPoint temporary
+~$*.ppt*
+
+# Visio autosave temporary files
+*.~vsd*
+
+##############################################################################
+#EOF
