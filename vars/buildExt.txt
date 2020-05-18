@@ -1,0 +1,6 @@
+Simplifies the request of build specific information.<br/><br/>
+
+<b><code>isBuildTriggeredByUser</code></b>
+<blockquote>
+Returns <code>true</code> if the build has been triggered manually by the user.
+</blockquote>

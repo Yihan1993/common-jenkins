@@ -1,0 +1,20 @@
+Provides functions to work with <a href="https://conan.io/">Conan</a>.<br/><br/>
+
+<b><code>initialize</code></b>
+
+<blockquote>
+Logs in to a Conan remote.
+
+<p>
+<code>remote</code>
+<blockquote>
+The name of the Conan remote as defined in the <code>remotes.json</code> file of the Conan configuration.
+</blockquote>
+
+<code>credentialsId</code>
+<blockquote>
+Identifier of the credential that shall be used for login.
+</blockquote>
+</p>
+
+</blockquote>

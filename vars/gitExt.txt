@@ -1,0 +1,35 @@
+Simplifies the request of Git information when using the <a href="https://plugins.jenkins.io/workflow-multibranch">Multibranch Pipeline plugin</a>.
+
+<p>
+Check <a href="#env"><code>env</code></a> for the list of environment variables that are provided by the Multibranch Pipeline plugin.
+</p>
+
+<b><code>getLastCommitterMailAddress</code></b>
+<blockquote>
+Gets the mail address of the last committer.<br/><br/>
+<i>This method does not use environment variables but the Git command line interface. Therefore the method shall be called from a directory within a Git repository.</i>
+</blockquote>
+
+<b><code>getPullRequestUrl</code></b>
+<blockquote>
+Gets the URL of the Pull Request.<br/><br/>
+<i>This method uses the <a href="#env"><code>CHANGE_URL</code></a> environment variable.</i>
+</blockquote>
+
+<b><code>getTaskBranch</code></b>
+<blockquote>
+Gets the name of the task branch no matter if the branch belongs to a Pull Request or not.<br/><br/>
+<i>This method uses the <a href="#env"><code>CHANGE_BRANCH</code></a> and <a href="#env"><code>BRANCH_NAME</code></a> environment variables.</i>
+</blockquote>
+
+<b><code>isPullRequest</code></b>
+<blockquote>
+Returns <code>true</code> if the build belongs to a Pull Request and <code>false</code> otherwise.<br/><br/>
+<i>This method uses the <a href="#env"><code>CHANGE_BRANCH</code></a> environment variable.</i>
+</blockquote>
+
+<b><code>isTaskBranch</code></b>
+<blockquote>
+Returns <code>true</code> if the Git branch is a task branch (no matter if the build belongs to a Pull Request or not).<br/><br/>
+<i>Task branches are identified with the prefix <code>task/<code>.</i>
+</blockquote>

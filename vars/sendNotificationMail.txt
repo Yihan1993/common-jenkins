@@ -1,0 +1,18 @@
+Sends a notification mail about the build depending on the branch type and the build result.<br/><br/>
+
+A notification mail is sent if ...
+<ul>
+  <li>... the build belongs to a Pull Request.</li>
+  <li>... the build was broken and got fixed.</li>
+  <li>... the build fails the first time.</li>
+  <li>... the build fails repeatedly and was not triggered manually by a user.</li>
+</ul>
+
+The following users are informed about the build result:
+<ul>
+  <li>The last committer if the build belongs to a task branch.</li>
+  <li>All job owners if the build belongs to a maintenance or integration branch.</li>
+  <li>The default recipients that are configured in Jenkins if no valid user is found.</li>
+</ul>
+
+<i>Please be aware that only valid mail addresses are considered, e.g. mail addresses that do not end with <code>@zf.com</code> are filtered out.</i>
