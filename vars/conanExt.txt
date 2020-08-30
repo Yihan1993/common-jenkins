@@ -1,5 +1,7 @@
 Provides functions to work with <a href="https://conan.io/">Conan</a>.<br/><br/>
 
+<!-- initialize -->
+
 <b><code>initialize</code></b>
 
 <blockquote>
@@ -14,6 +16,40 @@ The name of the Conan remote as defined in the <code>remotes.json</code> file of
 <code>credentialsId</code>
 <blockquote>
 Identifier of the credential that shall be used for login.
+</blockquote>
+</p>
+
+</blockquote>
+
+
+<!-- getConanPackageByLockfile -->
+
+<b><code>getConanPackageByLockfile</code></b>
+
+<blockquote>
+Parses a lockfile of a Conan package to get the name, reference, package identifier and other information. The method also tries to read the SCM revision from the Conan recipe if it is found.
+
+<p>
+<code>lockfile</code>
+<blockquote>
+Path to the lockfile that shall be parsed.
+</blockquote>
+</p>
+
+</blockquote>
+
+
+<!-- getConanPackagesAsPropertiesMap -->
+
+<b><code>getConanPackagesAsPropertiesMap</code></b>
+
+<blockquote>
+Reads the lockfile of one or more Conan packages and creates a map that contains the relevant information about the Conan packages.
+
+<p>
+<code>lockfiles</code>
+<blockquote>
+List of file paths to one or more Conan lockfiles.
 </blockquote>
 </p>
 

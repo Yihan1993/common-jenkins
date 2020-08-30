@@ -31,5 +31,5 @@ Returns <code>true</code> if the build belongs to a Pull Request and <code>false
 <b><code>isTaskBranch</code></b>
 <blockquote>
 Returns <code>true</code> if the Git branch is a task branch (no matter if the build belongs to a Pull Request or not).<br/><br/>
-<i>Task branches are identified with the prefix <code>task/<code>.</i>
+<i>Task branches are identified with the prefix <code>task/</code>.</i>
 </blockquote>

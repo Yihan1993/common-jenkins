@@ -9,6 +9,8 @@ import hudson.model.ParametersDefinitionProperty
 
 //region Custom steps
 
+// Resets all build parameters to their default values if the build is not
+// triggered manually by the user.
 def call()
 {
   if (buildExt.isBuildTriggeredByUser()) {
@@ -18,8 +20,11 @@ def call()
   getAllBuildParameters().each {
     echo "Set parameter '${it}' to its default value ..."
 
-    def defaultValue = getDefaultValueOfParameter(it)
-    updateParameterValue(defaultValue)
+    def DefaultValue = getDefaultValueOfParameter(it)
+
+    if (DefaultValue) {
+      updateParameterValue(DefaultValue)
+    }
   }
 }
 
@@ -36,23 +41,31 @@ def private getAllBuildParameters()
 
 def private getDefaultValueOfParameter(String argName)
 {
-  def buildProperties = currentBuild.rawBuild.parent.properties
-  def definitions = buildProperties.find {
+  def BuildProperties = currentBuild.rawBuild.parent.properties
+  def Definitions = BuildProperties.find {
     it.value instanceof ParametersDefinitionProperty
-  }.value
+  }
 
-  def paramDefinition = definitions.getParameterDefinition(argName)
-  return paramDefinition.getDefaultParameterValue()
+  if (!Definitions) {
+    return null
+  }
+
+  def ParamDefinition = Definitions.value.getParameterDefinition(argName)
+  return ParamDefinition?.getDefaultParameterValue()
 }
 
 
 def private updateParameterValue(argParameterValue)
 {
-  currentBuild.rawBuild.addOrReplaceAction(
-    currentBuild.rawBuild.getAction(ParametersAction.class).createUpdated(
-      [ argParameterValue ]
-    )
-  )
+  def Action = currentBuild.rawBuild.getAction(ParametersAction.class)
+
+  // Action may be null if no previous build or build parameter is available
+  if (!Action) {
+    return
+  }
+
+  def UpdatedAction = Action.createUpdated( [ argParameterValue ] )
+  currentBuild.rawBuild.addOrReplaceAction(UpdatedAction)
 }
 
 //endregion

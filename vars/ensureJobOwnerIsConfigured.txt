@@ -1,0 +1,2 @@
+Sets the current stage result to <code>UNSTABLE</code> if the build belongs to a maintenance or integration branch and no valid <a href="#ownership">job owner</a> is configured.<br/><br/>
+<i>All branches that do not start with the prefix <code>task/</code> are considered to be either maintenance or integration branches.</i>

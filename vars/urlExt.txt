@@ -1,0 +1,16 @@
+Provides useful methods to work with URLs.<br/><br/>
+
+<!-- getDomainName -->
+
+<b><code>getDomainName</code></b>
+<blockquote>
+Gets the domain name of an URL.
+
+<p>
+<code>url</code>
+<blockquote>
+The URL to get the domain name for.
+</blockquote>
+</p>
+
+</blockquote>

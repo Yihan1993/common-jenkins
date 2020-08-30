@@ -33,7 +33,7 @@ def getLastCommitterMailAddress()
       )
     } else {
       CommitterMail = bat(returnStdout: true,
-        script: 'git log -1 --pretty=format:%%ce 2>nul'
+        script: '@git log -1 --pretty=format:%%ce 2>nul'
       )
     }
 

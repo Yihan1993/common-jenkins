@@ -218,7 +218,13 @@ def private getPublishBaseFileName(String argModule, String argClassifier,
 def private getPropertiesAsFileSpecString(Map argProperties)
 {
   def DefaultProps = argProperties?.collect {
-    "${it.key}=${it.value}"
+    // Join the value by using a comma as delimiter if it is a list
+    def Value = it.value
+    if (it.value instanceof List) {
+      Value = it.value.join(',')
+    }
+
+    return "${it.key}=${Value}"
   }?.join(';')
 
   return DefaultProps

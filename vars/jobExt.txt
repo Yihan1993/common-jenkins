@@ -1,0 +1,10 @@
+Provides methods to query job related information.<br/><br/>
+
+<!-- getJobOwnerMailAddresses -->
+
+<b><code>getJobOwnerMailAddresses</code></b>
+<blockquote>
+Returns a list with the mail addresses of all job owners. This includes primary owners and all secondary owners of the current job.<br/><br/>
+
+<i>This method returns an empty list if no job owner is configured or the <a href="#ownership">Job and Node ownership plugin</a> is missing.</i>
+</blockquote>

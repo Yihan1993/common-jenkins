@@ -1,5 +1,12 @@
 #!groovy
 
+//region Imports
+
+import com.zf.proaicv.MailFilter
+
+//endregion
+
+
 //region Custom steps
 
 // Sends a notification mail about the build depending on the branch type and
@@ -14,14 +21,14 @@ def call()
   // expanded by the Email Extension Plugin)
 
   // Append the URL of the Pull Request to the mail's content
-  def bodyText = '$DEFAULT_CONTENT'
+  def BodyText = '$DEFAULT_CONTENT'
   if (gitExt.isPullRequest()) {
-    bodyText = '$DEFAULT_CONTENT\n\n' + gitExt.getPullRequestUrl()
+    BodyText = '$DEFAULT_CONTENT\n\n' + gitExt.getPullRequestUrl()
   }
 
   if (isNotificationMailNeeded()) {
     emailext subject: '$DEFAULT_SUBJECT',
-      body: bodyText,
+      body: BodyText,
       replyTo: '$DEFAULT_REPLYTO',
       to: getUserMailAddresses()
   }
@@ -32,50 +39,12 @@ def call()
 
 //region Private methods
 
-// Returns a list with the mail addresses of all job owners (primary owner
-// and all secondary owners).
-def private getJobOwnerMailAddresses()
-{
-  def JobOwners = []
-
-  try {
-    if (ownership.job.ownershipEnabled) {
-      JobOwners += ownership.job.primaryOwnerEmail ?: []
-      JobOwners += ownership.job.secondaryOwnerEmails ?: []
-      JobOwners.unique()
-    }
-  } catch (Exception ex) {
-    // do nothing if ownershop is not installed or configured
-  }
-
-  return JobOwners
-}
-
-
 // Returns the default recipients configured for the Email Extension Plugin.
 def private getFallbackMailAddress()
 {
   // Use single quotes to prevent automatic expansion of the variable
   // DEFAULT_RECIPIENTS (it will be expanded by the plugin)
   return '$DEFAULT_RECIPIENTS'
-}
-
-
-// Returns true if the mail address ends with '@zf.com'.
-def private isCompanyMailAddress(String MailAddress)
-{
-  // Check for 'zf.com' as domain (use '?i' to ignore case)
-  return (MailAddress =~ /(?i)@zf\.com$/) ? true : false
-}
-
-
-// Returns true if the mail address does not belong to a valid person or is
-// blacklisted for other reason. E.g. mail addresses like no-reply@zf.com
-// shall be filtered out.
-def private isBlacklisted(String MailAddress)
-{
-  // Check for special user names (use '?i' to ignore case)
-  return (MailAddress =~ /(?i)^(SYSTEM|no\-reply|noreply)/) ? true : false
 }
 
 
@@ -93,10 +62,10 @@ def private getUserMailAddresses()
   // lead to an invalid list of culprits. Therefore we need to calculate the
   // culprits at our own.
   Users += (gitExt.isTaskBranch() ? gitExt.getLastCommitterMailAddress() :
-    getJobOwnerMailAddresses())
+    jobExt.getJobOwnerMailAddresses())
 
   // Filter out unwanted mail addresses
-  Users = Users.findAll { isCompanyMailAddress(it) && !isBlacklisted(it) }
+  Users = MailFilter.filter(Users)
 
   if (Users.isEmpty()) {
     Users += getFallbackMailAddress()
