@@ -1,6 +1,0 @@
-Resets all build parameters to their default values except if the build has been triggered manually by the user.<br/><br/>
-
-Parameterized builds in Jenkins reuse the parameter values known before the execution of the Pipeline script.
-However, this may cause unexpected behavior, e.g. if the <code>parameters</code> directive of the <a href="https://www.jenkins.io/doc/book/pipeline/syntax/#parameters">Pipeline Syntax</a> is used.
-In such a situation the default parameter values are usually taken from the last build as some updated values are not yet known to the executor.
-However, this is not desired for automated builds. Automated builds shall always use the latest default values for their build parameters.
