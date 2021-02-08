@@ -15,7 +15,7 @@ def call(Map config = [:]) {
             stage ('use var in shell') {
                 steps {
                     script {
-                        sh 'echo ${config.int}'
+                        println config.int
                     }
                 }
             }
