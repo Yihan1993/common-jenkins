@@ -19,3 +19,28 @@
 @Library('proai-cv@master') _
 
 evenOrOdd(currentBuild.getNumber())
+
+@Library('proai-cv@master') _
+
+pipeline {
+    agent any
+
+    options {
+        timestamps()
+    }
+    
+    stages{
+        stage('test hello'){
+           steps {
+                hello("hello world")
+           }
+       }
+        stage('test stage class') {
+            steps {
+                script {
+                    new DeclarativeFooStage(this).execute('something', true)
+                }
+            }
+        }
+    }
+}
