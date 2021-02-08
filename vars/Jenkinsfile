@@ -1,0 +1,21 @@
+
+// pipeline {
+//     agent any
+//     libraries {
+//         lib('proai-cv@master')
+//     }
+//     options {
+//         timestamps()
+//     }
+//     stages{
+//         stage('test hello'){
+//             steps {
+//                 hello("hello world")
+//             }
+//         }
+//     }
+//     //evenOrOdd(currentBuild.getNumber())
+// }
+@Library('proai-cv@master') _
+
+evenOrOdd(currentBuild.getNumber())
