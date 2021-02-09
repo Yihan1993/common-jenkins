@@ -16,6 +16,28 @@
 //     }
 //     //evenOrOdd(currentBuild.getNumber())
 // }
+
+
+@Library('proai-cv@master') _
+
+pipeline {
+    agent any
+
+    options {
+        timestamps()
+    }
+    
+    stages{
+        stage('test hello'){
+           steps {
+                script {
+                    useHello.useHelloFun('test')
+                }
+           }
+       }
+    }
+}
+
 @Library('proai-cv@master') _
 
 evenOrOdd(currentBuild.getNumber())
