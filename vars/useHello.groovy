@@ -4,7 +4,8 @@ def useHelloFun(String str) {
 }
 
 def runShellCheck() {
-    def output = sh(script: "mkdir -p ./output/shellcheck",
+    sh (script: "touch test.txt")
+    def output = sh(script: "find ./ -type f -name '*.txt'",
                     returnStdout: true).trim()
     println (output)
 }
